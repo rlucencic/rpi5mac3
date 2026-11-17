@@ -135,15 +135,15 @@ cmake -S . -B build -G Ninja && cmake --build build
 
 ### 3. ROMs
 
-The LC II's (512 KB) or the LC III's (1 MB) in the data folder's `roms/`
-(`~/rpi5emu/roms`), under any name (esp32mac3's: `lc2.rom`, `lc3.rom`):
+The LC II's (512 KB) or the LC III's (1 MB) in the data folder's `mac/roms/`
+(`~/rpi5emu/mac/roms`), under any name (esp32mac3's: `lc2.rom`, `lc3.rom`):
 it is found by its checksum. Not part of this repository.
 
 ### 4. First start
 
 1. `build/rpi5mac3`: the setup screen opens in a window.
 2. Choose the model and click **Start**.
-3. Put images into `~/rpi5emu/disks/`, drop them on the window or the web page, and
+3. Put images into `~/rpi5emu/mac/`, drop them on the window or the web page, and
    insert them on the setup screen's **Disks** page.
 
 ## Using it
@@ -159,8 +159,9 @@ it is found by its checksum. Not part of this repository.
 | Start straight into the machine | `build/rpi5mac3 -S`, with the setup screen's rows as `--choice`: `build/rpi5mac3 -S --choice "Model=LC III" --choice "Memory=20 MB"` |
 | Show the window on another computer | Log in with `ssh -C -Y <the Pi>` and start it there: fine for still pictures; games want the Pi's own monitor |
 
-Images live in `~/rpi5emu/disks/`, settings in `~/.config/rpi5emu/settings.ini`; the
-inserted images are remembered across starts. `build/rpi5mac3 --help` lists the options.
+Images live in `~/rpi5emu/mac/` (rpi5mac's and rpi5mac2's too), settings in
+`~/.config/rpi5emu/settings.ini`; the inserted images are remembered across starts.
+`build/rpi5mac3 --help` lists the options.
 
 **Keyboard**: by position, as on Apple's Extended Keyboard (US). Command is
 the Windows/⌘ key, Option is Alt, Control is Ctrl; Backspace is Delete,
@@ -184,7 +185,7 @@ flowchart LR
   EMU -- picture --> WIN
   EMU -- sound --> SND[SDL audio]
   WIN -- keys · mouse --> EMU
-  DATA[("~/rpi5emu<br>roms · disks")]
+  DATA[("~/rpi5emu<br>mac · mac/roms")]
   EMU <--> DATA
   WEB <--> DATA
 ```

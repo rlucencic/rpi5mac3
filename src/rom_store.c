@@ -10,7 +10,7 @@ static const char *TAG = "rom";
 
 static const uint32_t sizes[] = { 512 * 1024, 1024 * 1024 };
 
-/* A file in the data folder's roms/ of the model's ROM size whose checksum
+/* A file in the machine's roms/ folder of the model's ROM size whose checksum
  * names a ROM of that model
  */
 bool rom_store_load(mac_model_t model, uint8_t *buf, uint32_t *size, const char **name)
@@ -19,7 +19,7 @@ bool rom_store_load(mac_model_t model, uint8_t *buf, uint32_t *size, const char 
         return false;
     }
     char folder[1200];
-    snprintf(folder, sizeof(folder), "%s/roms", emu_data_dir());
+    snprintf(folder, sizeof(folder), "%s", emu_rom_dir());
     DIR *dir = opendir(folder);
     if (dir == NULL) {
         return false;

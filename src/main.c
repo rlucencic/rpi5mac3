@@ -121,8 +121,8 @@ static bool start(void)
     bool lc3 = settings.model == MAC_MODEL_LC3;
     if (s_cfg.rom_copy == NULL || !rom_store_load(settings.model, s_cfg.rom_copy, &rom_size, &s_rom_name)) {
         static char message[1400];
-        snprintf(message, sizeof(message), "No Macintosh %s ROM (%s): copy it into %s/roms (as %s, or any name).",
-                 lc3 ? "LC III" : "LC II", lc3 ? "1 MB" : "512 KB", emu_data_dir(), lc3 ? "lc3.rom" : "lc2.rom");
+        snprintf(message, sizeof(message), "No Macintosh %s ROM (%s): copy it into %s (as %s, or any name).",
+                 lc3 ? "LC III" : "LC II", lc3 ? "1 MB" : "512 KB", emu_rom_dir(), lc3 ? "lc3.rom" : "lc2.rom");
         emu_set_message(message);
         return false;
     }
@@ -396,7 +396,7 @@ static const disks_size_t sizes[] = {
 };
 
 static const disks_config_t disks = {
-    .folder = "disks",
+    .folder = "mac",
     .extensions = extensions,
     .description = "Disk images (.DSK, .IMG, .IMAGE, .HFV, .ISO, .DMG)",
     .title = "Disks",
