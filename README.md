@@ -1,13 +1,14 @@
-<h1 align="center">rpi5mac3</h1>
+<h1 align="center">sdlmac3</h1>
 
 <p align="center">
-  <b>A Macintosh LC II or LC III on the Raspberry Pi 5, in a window of its own.</b><br>
+  <b>A Macintosh LC II or LC III in an SDL 3 window on Linux or macOS.</b><br>
   68030 with its MMU and FPU, 640×480 in 256 colours, up to 20 MB, Mac OS 7.6.1, disk images of any size in three drives.
 </p>
 
 <p align="center">
   <img alt="Raspberry Pi 5" src="https://img.shields.io/badge/Raspberry%20Pi-5-c51a4a">
-  <img alt="Linux arm64" src="https://img.shields.io/badge/Linux-arm64-333">
+  <img alt="Linux arm64 and amd64" src="https://img.shields.io/badge/Linux-arm64%20%7C%20amd64-333">
+  <img alt="macOS arm64" src="https://img.shields.io/badge/macOS-arm64-333">
   <img alt="SDL 3" src="https://img.shields.io/badge/SDL-3-1d4ed8">
   <img alt="68030" src="https://img.shields.io/badge/CPU-Musashi%2068030%20%2B%20MMU-555">
   <img alt="MIT licence" src="https://img.shields.io/badge/licence-MIT-green">
@@ -24,28 +25,27 @@
   <sub>The LC III asking for a system disk, on the Pi.</sub>
 </p>
 
-rpi5mac3 runs [esp32mac3](https://github.com/rlucencic/esp32mac3)'s Mac on a Raspberry Pi 5 with
-64-bit Linux, in a window of its own (X11 or Wayland, through SDL 3). The machine is the
+sdlmac3 runs [esp32mac3](https://github.com/rlucencic/esp32mac3)'s Mac on 64-bit Linux (arm64 and amd64) and Apple Silicon macOS. SDL 3 provides the window, sound and input. The machine is the
 same code as on the ESP32 boards: esp32mac3's platform-independent core and
 [esp32emu](https://github.com/rlucencic/esp32emu)'s CPU core, on
-[rpi5emu](https://github.com/rlucencic/rpi5emu), the family's Linux runtime: a setup
-screen in the window, sound, the Pi's keyboard and mouse, a web page on your network and a
+[sdlemu](https://github.com/rlucencic/sdlemu), the family's desktop runtime: a setup
+screen in the window, sound, the host's keyboard and mouse, a web page on your network and a
 console.
 
-It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
-[rpi5zx](https://github.com/rlucencic/rpi5zx) (ZX Spectrum),
-[rpi5cpc](https://github.com/rlucencic/rpi5cpc) (Amstrad CPC),
-[rpi5cbm](https://github.com/rlucencic/rpi5cbm) (Commodore 64 and 128),
-[rpi5coco](https://github.com/rlucencic/rpi5coco) (Tandy Color Computer 2 and 3),
-[rpi5gs](https://github.com/rlucencic/rpi5gs) (Apple IIGS),
-[rpi5msx](https://github.com/rlucencic/rpi5msx) (MSX1 and MSX2),
-[rpi5xl](https://github.com/rlucencic/rpi5xl) (Atari 800XL and 130XE),
-[rpi5ste](https://github.com/rlucencic/rpi5ste) (Atari STE),
-[rpi5pc](https://github.com/rlucencic/rpi5pc) (IBM PC/XT and PC/AT),
-[rpi5mac](https://github.com/rlucencic/rpi5mac) (Macintosh Plus, SE, Classic),
-[rpi5mac2](https://github.com/rlucencic/rpi5mac2) (Macintosh LC and II),
-[rpi5arc](https://github.com/rlucencic/rpi5arc) (Acorn Archimedes),
-[rpi5ami](https://github.com/rlucencic/rpi5ami) (Amiga 500, 2000, 600, 1200).
+It belongs to the SDL desktop family of the ESP32 emulators:
+[sdlzx](https://github.com/rlucencic/sdlzx) (ZX Spectrum),
+[sdlcpc](https://github.com/rlucencic/sdlcpc) (Amstrad CPC),
+[sdlcbm](https://github.com/rlucencic/sdlcbm) (Commodore 64 and 128),
+[sdlcoco](https://github.com/rlucencic/sdlcoco) (Tandy Color Computer 2 and 3),
+[sdlgs](https://github.com/rlucencic/sdlgs) (Apple IIGS),
+[sdlmsx](https://github.com/rlucencic/sdlmsx) (MSX1 and MSX2),
+[sdlxl](https://github.com/rlucencic/sdlxl) (Atari 800XL and 130XE),
+[sdlste](https://github.com/rlucencic/sdlste) (Atari STE),
+[sdlpc](https://github.com/rlucencic/sdlpc) (IBM PC/XT and PC/AT),
+[sdlmac](https://github.com/rlucencic/sdlmac) (Macintosh Plus, SE, Classic),
+[sdlmac2](https://github.com/rlucencic/sdlmac2) (Macintosh LC and II),
+[sdlarc](https://github.com/rlucencic/sdlarc) (Acorn Archimedes),
+[sdlami](https://github.com/rlucencic/sdlami) (Amiga 500, 2000, 600, 1200).
 
 ## Features
 
@@ -115,11 +115,8 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 ### 1. What you need
 
-- A Raspberry Pi 5 with 64-bit Linux (developed on Ubuntu 26.04; any Linux with SDL 3.2 or
-  later should do)
-- The tools and libraries:
-  `sudo apt install build-essential cmake ninja-build pkg-config libsdl3-dev libsdl3-ttf-dev libpng-dev`
-- [esp32emu](https://github.com/rlucencic/esp32emu), [rpi5emu](https://github.com/rlucencic/rpi5emu)
+- 64-bit Linux (including Raspberry Pi 5) or Apple Silicon macOS with SDL 3.2 or newer. See [desktop build dependencies](https://github.com/rlucencic/sdlemu#building).
+- [esp32emu](https://github.com/rlucencic/esp32emu), [sdlemu](https://github.com/rlucencic/sdlemu)
   and [esp32mac3](https://github.com/rlucencic/esp32mac3), cloned next to this project
 - The ROMs (below)
 
@@ -127,23 +124,23 @@ It's one of the rpi5 family, the Raspberry Pi versions of the esp32 emulators:
 
 ```sh
 git clone https://github.com/rlucencic/esp32emu.git
-git clone https://github.com/rlucencic/rpi5emu.git
+git clone https://github.com/rlucencic/sdlemu.git
 git clone https://github.com/rlucencic/esp32mac3.git
-git clone https://github.com/rlucencic/rpi5mac3.git && cd rpi5mac3
+git clone https://github.com/rlucencic/sdlmac3.git && cd sdlmac3
 cmake -S . -B build -G Ninja && cmake --build build
 ```
 
 ### 3. ROMs
 
 The LC II's (512 KB) or the LC III's (1 MB) in the data folder's `mac/roms/`
-(`~/rpi5emu/mac/roms`), under any name (esp32mac3's: `lc2.rom`, `lc3.rom`):
+(`~/sdlemu/mac/roms`), under any name (esp32mac3's: `lc2.rom`, `lc3.rom`):
 it is found by its checksum. Not part of this repository.
 
 ### 4. First start
 
-1. `build/rpi5mac3`: the setup screen opens in a window.
+1. `build/sdlmac3`: the setup screen opens in a window.
 2. Choose the model and click **Start**.
-3. Put images into `~/rpi5emu/mac/`, drop them on the window or the web page, and
+3. Put images into `~/sdlemu/mac/`, drop them on the window or the web page, and
    insert them on the setup screen's **Disks** page.
 
 ## Using it
@@ -154,14 +151,14 @@ it is found by its checksum. Not part of this repository.
 | Full screen | Ctrl+Alt+F |
 | Give the mouse to the machine, take it back | A click in the window; Ctrl+Alt+G |
 | Run as fast as it goes (warp) | Ctrl+Alt+W, again for real speed |
-| Take a screenshot | Ctrl+Alt+S (into `~/rpi5emu/screenshots`), or the console's `s` |
-| Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/rpi5mac3 MacOS761.hda` |
-| Start straight into the machine | `build/rpi5mac3 -S`, with the setup screen's rows as `--choice`: `build/rpi5mac3 -S --choice "Model=LC III" --choice "Memory=20 MB"` |
+| Take a screenshot | Ctrl+Alt+S (into `~/sdlemu/screenshots`), or the console's `s` |
+| Insert an image | The setup screen's **Disks** page, drop it on the window or the web page, or name it on the command line: `build/sdlmac3 MacOS761.hda` |
+| Start straight into the machine | `build/sdlmac3 -S`, with the setup screen's rows as `--choice`: `build/sdlmac3 -S --choice "Model=LC III" --choice "Memory=20 MB"` |
 | Show the window on another computer | Log in with `ssh -C -Y <the Pi>` and start it there: fine for still pictures; games want the Pi's own monitor |
 
-Images live in `~/rpi5emu/mac/` (rpi5mac's and rpi5mac2's too), settings in
-`~/.config/rpi5emu/settings.ini`; the inserted images are remembered across starts.
-`build/rpi5mac3 --help` lists the options.
+Images live in `~/sdlemu/mac/` (sdlmac's and sdlmac2's too), settings in
+`~/.config/sdlemu/settings.ini`; the inserted images are remembered across starts.
+`build/sdlmac3 --help` lists the options.
 
 **Keyboard**: by position, as on Apple's Extended Keyboard (US). Command is
 the Windows/⌘ key, Option is Alt, Control is Ctrl; Backspace is Delete,
@@ -185,7 +182,7 @@ flowchart LR
   EMU -- picture --> WIN
   EMU -- sound --> SND[SDL audio]
   WIN -- keys · mouse --> EMU
-  DATA[("~/rpi5emu<br>mac · mac/roms")]
+  DATA[("~/sdlemu<br>mac · mac/roms")]
   EMU <--> DATA
   WEB <--> DATA
 ```
@@ -194,17 +191,17 @@ flowchart LR
   platform independent: the same code runs on the ESP32 boards.
 - **`src/`**: the glue, esp32mac3's `main/main.c` ported: memory, ROMs, settings, keyboard map,
   drives and status.
-- **[rpi5emu](https://github.com/rlucencic/rpi5emu)**: the window, the setup screen, sound,
+- **[sdlemu](https://github.com/rlucencic/sdlemu)**: the window, the setup screen, sound,
   input, the web page, the console, the data folder and the settings.
 - **[esp32emu](https://github.com/rlucencic/esp32emu)**: the CPU core (Musashi 68030 + MMU).
 
 ## Development
 
 ```sh
-../rpi5emu/tools/pi.sh rpi5mac3 build        # from another computer: sync to the Pi, build there
-../rpi5emu/tools/pi.sh rpi5mac3 run          # its window on this computer (ssh -C -Y)
-../rpi5emu/tools/pi.sh rpi5mac3 headless     # no window: drive it through the console
-../rpi5emu/tools/console.sh i 's /tmp/shot.png'
+../sdlemu/tools/pi.sh sdlmac3 build        # from another computer: sync to the Pi, build there
+../sdlemu/tools/pi.sh sdlmac3 run          # its window on this computer (ssh -C -Y)
+../sdlemu/tools/pi.sh sdlmac3 headless     # no window: drive it through the console
+../sdlemu/tools/console.sh i 's /tmp/shot.png'
 ```
 
 `CLAUDE.md` has the details: the layout, how it was ported, the checks; esp32mac3's own

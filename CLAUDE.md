@@ -1,7 +1,7 @@
-# rpi5mac3: the Macintosh LC II and LC III on the Raspberry Pi 5
+# sdlmac3: the Macintosh LC II and LC III on Linux and macOS through SDL 3
 
 esp32mac3's Mac (`../esp32mac3/components/mac3`, platform independent) on
-the rpi5emu runtime (`../rpi5emu`, its CLAUDE.md: the workflow, the Pi, the
+the sdlemu runtime (`../sdlemu`, its CLAUDE.md: the workflow, the Pi, the
 lessons), the 68030 with its MMU (Musashi, `M68K_68030`) esp32emu's. The
 machine's own behaviour, lessons and tests are esp32mac3's CLAUDE.md; this
 project is the glue.
@@ -10,20 +10,20 @@ project is the glue.
 
 | Path | What |
 |---|---|
-| `src/main.c` | The Mac as an `emu_machine_t`: esp32mac3's `main/main.c` through `../rpi5emu/tools/port_glue.py` and `port_finish.py`, then by hand: up to 20 MB, no opcode table copies (rpi5ste's lesson), the ROM message, the time by `clock_gettime()` (the CPU's speed follows the frames' time), the web script built in, `shutdown()` saves the PRAM |
+| `src/main.c` | The Mac as an `emu_machine_t`: esp32mac3's `main/main.c` through `../sdlemu/tools/port_glue.py` and `port_finish.py`, then by hand: up to 20 MB, no opcode table copies (sdlste's lesson), the ROM message, the time by `clock_gettime()` (the CPU's speed follows the frames' time), the web script built in, `shutdown()` saves the PRAM |
 | `src/settings.c` | esp32mac3's, over `emu/nvs.h` (section `mac3`, each model's PRAM as hex) |
-| `src/rom_store.c` | A file of the model's ROM size in `~/rpi5emu/mac/roms/` (`emu_rom_dir()`: the three Macs share it) whose checksum names that model (any name) |
-| `CMakeLists.txt` | `M68K_68030` for the whole target (Musashi's too); `rpi5emu_embed()` builds in esp32mac3's `main/web/macfiles.js` (LGPL) |
+| `src/rom_store.c` | A file of the model's ROM size in `~/sdlemu/mac/roms/` (`emu_rom_dir()`: the three Macs share it) whose checksum names that model (any name) |
+| `CMakeLists.txt` | `M68K_68030` for the whole target (Musashi's too); `sdlemu_embed()` builds in esp32mac3's `main/web/macfiles.js` (LGPL) |
 
 Keep `src/main.c` in step with esp32mac3's `main/main.c`.
 
 ## Build, run, check
 
 ```sh
-../rpi5emu/tools/pi.sh rpi5mac3 build
-../rpi5emu/tools/pi.sh rpi5mac3 headless     # or run: the window here
-../rpi5emu/tools/console.sh i c
-../rpi5emu/tools/pi.sh rpi5mac3 shot out.png
+../sdlemu/tools/pi.sh sdlmac3 build
+../sdlemu/tools/pi.sh sdlmac3 headless     # or run: the window here
+../sdlemu/tools/console.sh i c
+../sdlemu/tools/pi.sh sdlmac3 shot out.png
 ```
 
 Console: the runtime's (`h`) and esp32mac3's: `k <hex>`, `K <hex> 0|1`,
